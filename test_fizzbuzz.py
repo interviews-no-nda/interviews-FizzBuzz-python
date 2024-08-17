@@ -3,6 +3,12 @@ import pytest
 from fizzbuzz import fizzbuzz
 
 
+@pytest.mark.parametrize("start, end", [(-1, 10,),   (10, 9),])
+def test_generator_default_errors(start, end):
+    with pytest.raises(ValueError):
+        next(fizzbuzz(start, end))
+
+
 @pytest.mark.parametrize("args, expected", [
     (
         (1, 10),
