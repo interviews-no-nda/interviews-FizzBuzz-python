@@ -17,7 +17,7 @@ from fizzbuzz import fizzbuzz
         ('Buzz', 'Fizz', 7, 8, 'Fizz', 'Buzz', 11, 'Fizz', 13, 14, 'FizzBuzz')
     ),
     (
-        (10, 10, {3: "Fizz", 5: "Buzz", 10: "Tenzz"}),
+        (10, 10, {3: "Fizz", 10: "Tenzz"}),
         ("Tenzz",)
     ),
     (
@@ -25,8 +25,8 @@ from fizzbuzz import fizzbuzz
         (1, 2, 'Fizz', 4, 'Buzz', 'Fizz', 7, 8, 'Fizz', "BuzzTenzz")
     ),
     (
-        (100, 110, {3: "Fizz", 5: "Buzz", 10: "Tenzz"}),
-        ('BuzzTenzz', 101, 'Fizz', 103, 104, 'FizzBuzz', 106, 107, 'Fizz', 109, 'BuzzTenzz')
+        (110, 120, {3: "Fizz", 5: "Buzz", 10: "Tenzz"}),
+        ('BuzzTenzz', 'Fizz', 112, 113, 'Fizz', 'Buzz', 116, 'Fizz', 118, 119, 'FizzBuzzTenzz')
     ),
 
 ])
