@@ -15,7 +15,8 @@ def fizzbuzz(start: int = 1, end: int = 50, rules: dict[int, str] | None = None)
     if start > end:
         raise ValueError(f"Range lower bound can not be larger than the upper bound: '{start=}, {end=}'")
 
-    yield from ("".join((value for key, value in rules.items() if idx % key == 0)) or idx for idx in range(start, end+1))
+    yield from ("".join((value for key, value in rules.items() if idx % key == 0))
+                or idx for idx in range(start, end+1))
 
 
 def main(argv: Sequence | None = None) -> int:
