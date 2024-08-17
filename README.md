@@ -5,7 +5,7 @@ For numbers that are multiples of three and five, print *"FizzBuzz"*
 
 ### Additional requireemnts
 Provide an easy way to change the rules of FizzBuss:
-- change the dioviders instead or in addition to *3* and *5*
+- change the dividers instead or in addition to *3* and *5*
 - change the text equivalents for dividers instead or in addition to *"Fizz"* and *"Buzz"*
 - change the integers range to any range of positive integers
 
