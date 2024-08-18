@@ -5,18 +5,12 @@ import argparse
 RULES_DEFAULT = {3: "Fizz", 5: "Buzz"}
 
 
-def fizzbuzz(start: int = 1, end: int = 50, rules: dict[int, str] | None = None) -> Generator[int | str, None, None]:
+def fizzbuzz(rng: range, rules: dict[int, str] | None = None) -> Generator[int | str, None, None]:
     if not rules:
         rules = RULES_DEFAULT
 
-    if start < 0:
-        raise ValueError(f"Range lower bound can not be negative: '{start=}'")
-
-    if start > end:
-        raise ValueError(f"Range lower bound can not be larger than the upper bound: '{start=}, {end=}'")
-
     yield from ("".join((value for key, value in rules.items() if idx % key == 0))
-                or idx for idx in range(start, end+1))
+                or idx for idx in rng)
 
 
 def main(argv: Sequence | None = None) -> int:
@@ -40,15 +34,17 @@ def main(argv: Sequence | None = None) -> int:
     parser.error = types.MethodType(gen_custom_error(parser.error), parser)
     parser.add_argument("-s", "--start", default=1, type=int, help="range lower boundary. Default is 1")
     parser.add_argument("-e", "--end", default=50, type=int, help="range upper boundary. Default is 50")
+    parser.add_argument("-t", "--step", default=1, type=int, help="increment step boundary. Default is 1")
+
     parser.add_argument("-c", "--conf", type=from_pairs, nargs='+', metavar='INT=STR', help=f"Custom FizzBuzz rule.\
                         Default is '{" ".join(('='.join((str(key), value)) for key, value in RULES_DEFAULT.items()))}")
 
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     rules = None
     if args.conf:
         rules = dict(args.conf)
 
-    f = fizzbuzz(start=args.start, end=args.end, rules=rules)
+    f = fizzbuzz(range(args.start, args.end+1, args.step), rules=rules)
     print(*(value for value in f), sep="\n")
 
     return 0
