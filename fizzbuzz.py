@@ -35,8 +35,8 @@ def main(argv: Sequence | None = None) -> int:
     if args.conf:
         rules = dict(args.conf)
 
-    f = fizzbuzz(range(args.start, args.end+1, args.step), rules=rules)
-    print(*(value for value in f), sep="\n")
+    fixx_buzz_gen = fizzbuzz(range(args.start, args.end+1, args.step), rules=rules)
+    print(*(value for value in fixx_buzz_gen), sep="\n")
 
     return 0
 
