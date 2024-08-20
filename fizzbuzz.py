@@ -14,24 +14,16 @@ def fizzbuzz(rng: range, rules: dict[int, str] | None = None) -> Generator[int |
 
 
 def main(argv: Sequence | None = None) -> int:
-    def from_pairs(string) -> tuple[int, str]:
+    def from_pairs(in_value) -> tuple[int, str]:
         try:
-            key, value = string.split('=')
-        except Exception:
-            raise ValueError("argument must be a KEY=VALUE string")
+            key, value = in_value.split('=')
+        except ValueError:
+            raise argparse.ArgumentTypeError(f"argument -c/--conf must be a KEY=VALUE string, not {in_value}")
         return int(key), value
-
-    def gen_custom_error(f: Callable):
-        def custom_error(self, message):
-            if 'from_pairs' in message:
-                message = "argument -c/--conf must be a KEY=VALUE string, not"
-            f(message)
-        return custom_error
 
     parser = argparse.ArgumentParser(
         prog="python "+__file__, description="pyhton implemnetation of FizzBuzz"
     )
-    parser.error = types.MethodType(gen_custom_error(parser.error), parser)
     parser.add_argument("-s", "--start", default=1, type=int, help="range lower boundary. Default is 1")
     parser.add_argument("-e", "--end", default=50, type=int, help="range upper boundary. Default is 50")
     parser.add_argument("-t", "--step", default=1, type=int, help="increment step boundary. Default is 1")
