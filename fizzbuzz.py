@@ -1,5 +1,4 @@
-import types
-from typing import Callable, Generator, Sequence
+from typing import Generator, Sequence
 import argparse
 
 RULES_DEFAULT = {3: "Fizz", 5: "Buzz"}
